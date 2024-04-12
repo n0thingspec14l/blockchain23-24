@@ -1,0 +1,8 @@
+~/Bitcoin/Labs 
+➞  bitcoin-cli -regtest -datadir=$USER_1 getnewaddress                                                           
+bcrt1qq8gwqzflz6gnwj6q3zprvs9przq6h6dg32c839
+
+~/Bitcoin/Labs 
+➞  bitcoin-cli -regtest -datadir=$USER_2 getnewaddress                                                           
+bcrt1qeqn69jwkcvgf8vw4awva60ae7hursdjphdjazp
+
