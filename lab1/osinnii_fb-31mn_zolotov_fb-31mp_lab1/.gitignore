@@ -1,0 +1,5 @@
+#exclude 'blocks/' directories because they are using too much space
+
+/server/blocks
+/user_1/blocks
+/user_2/blocks
