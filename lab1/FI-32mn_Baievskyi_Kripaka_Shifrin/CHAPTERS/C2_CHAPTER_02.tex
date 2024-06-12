@@ -1,0 +1,121 @@
+%!TEX root = ../thesis.tex
+% створюємо розділ
+\chapter{Порівняльний аналіз системи Ethereum з іншими системами}
+\label{chap:theory}
+
+Системи криптовалют мають різні архітектури, протоколи та механізми, що впливають на процес їх розгортання. Далі проведемо аналіз, де порівняємо особливості розгортання систем Bitcoin, Litecoin, Dash, NEO та Ethereum з метою визначити можливість взаємозаміни модулів різних систем.
+
+\section{Порівняння основних характеристик}
+
+\begin{itemize}
+    \item Розгортання та налаштування
+    \vspace{0.25cm}
+    \begin{enumerate}
+        \item \textbf{Bitcoin} використовує механізм Proof of Work (PoW) з алгоритмом хешування SHA-256. Розгортання Bitcoin-нод включає завантаження клієнта Bitcoin Core, синхронізацію з мережею та налаштування конфігураційного файлу для мережі P2P.
+        \item \textbf{Litecoin} подібний до Bitcoin, але використовує алгоритм хешування Scrypt, що спрощує майнінг для звичайних користувачів. Розгортання Litecoin-нод аналогічне до Bitcoin і передбачає встановлення клієнта Litecoin Core.
+        \item \textbf{Dash} додає до PoW систему Masternodes, що забезпечує додаткові функції, такі як миттєві транзакції та підвищена конфіденційність. Розгортання Dash-нод включає налаштування стандартних нод та Masternodes з додатковими параметрами конфігурації.
+        \item \textbf{NEO} використовує механізм децентралізованого візантійського Fault Tolerance (dBFT). Розгортання NEO-нод включає налаштування NEO VM та підтримку смарт-контрактів, що вимагає додаткового налаштування мережевих параметрів і конфігурації вузлів.
+        \item \textbf{Ethereum} використовує PoW з алгоритмом Ethash і підтримує смарт-контракти через Ethereum Virtual Machine (EVM). Розгортання Ethereum-нод передбачає встановлення клієнта Geth або Parity, налаштування RPC та синхронізацію з мережею.
+        \item \textbf{Ethereum 2.0} використовує PoS з можливістю розгортання за допомогою клієнтів Prysm, Teku, Lighthouse або Nimbus, налаштування RPC та синхронізації з мережею. Також використовується новий блокчейн -- Beacon Chain, який керує консенсусом мережі PoS, а в майбутньому планується використовувати шардинг для підвищення масштабованості.
+    \end{enumerate}
+
+    \vspace{0.5cm}
+    \item Аналіз взаємозаміни модулів
+    
+    Через різні архітектури та протоколи, взаємозаміна модулів між різними системами є складною та часто неможливою. Наведемо основні причини:
+    \vspace{0.25cm}
+    \begin{enumerate}
+        \item \textbf{Алгоритми хешування:} кожна система використовує свій власний алгоритм хешування (SHA-256 для Bitcoin, Scrypt для Litecoin, X11 для Dash, SHA-3 для NEO, Ethash для Ethereum). Це робить неможливою взаємозаміну цих компонентів без значних змін у протоколі.
+        \item \textbf{Механізми консенсусу:} відмінності між PoW (Bitcoin, Litecoin), PoS (Ethereum 2.0), і dBFT (NEO) роблять механізми консенсусу несумісними. Кожен механізм вимагає специфічної логіки для підтвердження транзакцій та генерації блоків.
+        \item \textbf{Віртуальні машини:} Ethereum використовує EVM(Ethereum Virtual Machine) для виконання смарт-контрактів, тоді як NEO використовує NEO VM. Віртуальні машини розроблені для виконання контрактів у специфічних середовищах, що ускладнює їх взаємозаміну.
+        \item \textbf{Модульність коду:} Bitcoin має відносно монолітну архітектуру, що робить його важчим для модифікації. Ethereum та NEO мають більш модульний підхід, що дозволяє легше додавати або змінювати функціональні модулі. Однак, різні архітектурні рішення все одно ускладнюють взаємозаміну модулів між системами.
+    \end{enumerate}
+\end{itemize}
+
+\newpage
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\cellcolor{lightgray!25}\textbf{Характеристика} & \cellcolor{lightgray!25}\textbf{Bitcoin} & \cellcolor{lightgray!25}\textbf{Litecoin} & \cellcolor{lightgray!25}\textbf{ Dash } & \cellcolor{lightgray!25}\textbf{ NEO } & \cellcolor{lightgray!25}\textbf{Ethereum} & \cellcolor{lightgray!25}\textbf{Eth 2.0} \\
+\hline
+Consensus & \cellcolor{yellow!25}PoW & \cellcolor{yellow!25}PoW & \cellcolor{yellow!25}PoW * & \cellcolor{green!25}dBFT & \cellcolor{yellow!25}PoW & \cellcolor{green!25}PoS \\
+\hline
+Hash function & \cellcolor{green!25}SHA-256 & \cellcolor{yellow!25}Scrypt & \cellcolor{green!25}X11 & \cellcolor{green!25}SHA-3 & \cellcolor{yellow!25}Ethash & \cellcolor{green!25}n/a \\
+\hline
+Block time & \cellcolor{red!25}10 хв & \cellcolor{yellow!25}2.5 хв & \cellcolor{yellow!25}2.5 хв & \cellcolor{green!25}15-25 с & \cellcolor{green!25}12-15 с & \cellcolor{green!25}12-15 с \\
+\hline
+Modularity & \cellcolor{red!25}Низька & \cellcolor{yellow!25}Середня & \cellcolor{yellow!25}Середня & \cellcolor{green!25}Висока & \cellcolor{green!25}Висока & \cellcolor{green!25}Висока \\
+\hline
+Virtual machine & \cellcolor{red!25}Ні & \cellcolor{red!25}Ні & \cellcolor{red!25}Ні & \cellcolor{green!25}NEO VM & \cellcolor{green!25}EVM & \cellcolor{green!25}EVM \\
+\hline
+Smart-contracts & \cellcolor{red!25}Ні & \cellcolor{red!25}Ні & \cellcolor{yellow!25}Обмежено & \cellcolor{green!25}Так & \cellcolor{green!25}Так & \cellcolor{green!25}Так \\
+\hline
+DApps & \cellcolor{red!25}Ні & \cellcolor{red!25}Ні & \cellcolor{yellow!25}Обмежено & \cellcolor{green!25}Так & \cellcolor{green!25}Так & \cellcolor{green!25}Так \\
+\hline
+Mining & \cellcolor{green!25}Так & \cellcolor{green!25}Так & \cellcolor{green!25}Так & \cellcolor{red!25}Ні & \cellcolor{green!25}Так & \cellcolor{red!25}Ні \\
+\hline
+Staking & \cellcolor{red!25}Ні & \cellcolor{red!25}Ні & \cellcolor{green!25}Так * & \cellcolor{green!25}Так & \cellcolor{red!25}Ні & \cellcolor{green!25}Так \\
+\hline
+TPS & \cellcolor{red!25}7 & \cellcolor{yellow!25}56 & \cellcolor{red!25}28 & \cellcolor{green!25}1000+ & \cellcolor{red!25}30 & \cellcolor{green!25}100,000+ \\
+\hline
+Fees & \cellcolor{red!25}Високі & \cellcolor{green!25}Низькі & \cellcolor{yellow!25}Середні & \cellcolor{green!25}Низькі & \cellcolor{red!25}Високі & \cellcolor{green!25}Низькі \\
+\hline
+\end{tabular}
+\caption{Порівняння основних характеристик криптовалютних систем}
+\label{table
+}
+\end{table}
+
+* --- DASH надає можливість використання Masternodes: повноцінних вузлів, які стимулюються отриманням частини винагороди за блок в обмін на завдання, які вони виконують для мережі, серед яких найважливішими є участь у транзакціях.
+
+\vspace{1cm}
+\begin{enumerate}
+    \item \textbf{Порівняння алгоритмів консенсусу}
+    \begin{itemize}
+        \item PoS та dBFT забезпечують кращу енергоефективність та масштабованість.
+        \item PoW залишається безпечним, але енергоємним і менш ефективним в плані масштабованості.
+    \end{itemize}
+
+    \item \textbf{Порівняння алгоритмів гешування}
+    \begin{itemize}
+        \item SHA-256 і SHA-3 є добре перевіреними алгоритмами з високою безпекою та ефективністю.
+        \item X11 використовує комбінацію 11 різних хеш-функцій, що забезпечує високу безпеку.
+        \item Scrypt є менш енергоефективним, ніж SHA-256, але забезпечує кращий захист від ASIC-майнерів.
+        \item Ethash забезпечує адекватну безпеку, але має деякі недоліки в енергоефективності.
+        \item Eth 2.0 не використовує хешування для консенсусу, але система PoS забезпечує високу безпеку.
+    \end{itemize}
+
+    \item \textbf{Порівняння за середнім часом блоку}
+    \begin{itemize}
+        \item Швидший час блоку ($\leq 15$ секунд) дозволяє швидше підтверджувати транзакції, що є критично важливим для багатьох застосунків.
+        \item Повільніший час блоку ($> 5$ хвилин) забезпечує більше безпеки, але знижує швидкість підтвердження транзакцій.
+    \end{itemize}
+
+    \item \textbf{Модульність системи}
+    \begin{itemize}
+        \item Висока модульність дозволяє легше адаптувати та інтегрувати модулі.
+        \item Через різні архітектурні рішення та протоколи взаємозаміна модулів між різними системами є складною.
+    \end{itemize}
+
+    \item \textbf{Наявність віртуальних машин}
+    \begin{itemize}
+        \item Надається підтримку смарт-контрактів, що дозволяє створювати децентралізовані додатки (dApps), які розширюють функціонал мережі (Ethereum, NEO).
+        \item Надається можливість оновлень: віртуальні машини, такі як EVM, дозволяють легше впроваджувати оновлення та зміни.
+        \item Відсутність віртуальної машини обмежує можливості системи до простих транзакцій без складних програмованих логік.
+    \end{itemize}
+
+    \item \textbf{Порівняння за кількістю транзакцій на секунду (TPS)}
+    \begin{itemize}
+        \item Високі TPS ($> 1000$ TPS) важливі для масштабованості та підтримки великої кількості користувачів.
+        \item Низькі TPS ($\leq 50$ TPS) обмежують пропускну здатність мережі, що може призводити до затримок та підвищених комісій.
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+\chapconclude{\ref{chap:theory}}
+
+Розгортання кожної системи криптовалют має свої унікальні особливості, що обмежує можливість взаємозаміни модулів. Враховуючи різні алгоритми хешування, механізми консенсусу, віртуальні машини та рівні модульності коду, інтеграція модулів між різними системами потребує значних змін та адаптацій.
+
+Таким чином, ефективне розгортання та підтримка криптовалютних систем вимагають урахування їх унікальних особливостей та обмежень, а також чіткої архітектурної інтеграції для досягнення необхідної функціональності. Але, якщо вам потрібна система з алгоритмом консенсусу PoS (без можливості майнінгу) -- то Ethereum 2.0 є одним з кращих варіантів.
